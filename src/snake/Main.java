@@ -16,11 +16,13 @@ public class Main extends Application {
     public static List<Snake> snake = new ArrayList<>();
     public static Direction direction = Direction.down;
     public static boolean isGameOver = false;
-    public static FrameRate frameRate = new FrameRate();
+    public static Frame frame = new Frame();
     public static GraphicsContext graphicsContext;
     public static Pane root;
     public static Scene scene;
-    public static Canvas playCanvas = new Canvas(1000, 750);
+    public static int width = 1000;
+    public static int height = 750;
+    public static Canvas playCanvas = new Canvas(width, height);
 
     @Override
     public void start(Stage primaryStage) throws FileNotFoundException, IOException {
@@ -28,7 +30,7 @@ public class Main extends Application {
         graphicsContext = playCanvas.getGraphicsContext2D();
         root = new Pane();
 
-        scene = new Scene(root, 1000, 750);
+        scene = new Scene(root, width, height);
         primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Snake");

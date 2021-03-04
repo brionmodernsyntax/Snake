@@ -5,10 +5,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
-import static snake.Main.playCanvas;
-import static snake.Main.snake;
+import static snake.Main.*;
 
-public class GameOver {
+public class GameStop {
     public static GraphicsContext gameOverContext;
     public static Canvas gameOver = new Canvas(1000, 750);
 
@@ -20,10 +19,10 @@ public class GameOver {
         Main.root.getChildren().add(gameOver);
 
         gameOverContext.setFill(Color.web("#E4FCD4"));
-        gameOverContext.fillRect(0, 0, 1000, 750);
+        gameOverContext.fillRect(0, 0, width, height);
 
         gameOverContext.setFill(Color.web("#254F43"));
-        gameOverContext.fillRect(0, 0, 1000, 75);
+        gameOverContext.fillRect(0, 0, width, 75);
 
         Frame.basicUI(gameOverContext);
 
@@ -40,7 +39,7 @@ public class GameOver {
         gameOverContext.fillText("W,A,S,D TO MOVE", 300, 735);
 
         snake.removeAll(snake);
-        Main.frameRate.stop();
+        Main.frame.stop();
 
 
     }

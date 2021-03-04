@@ -12,14 +12,14 @@ public class GameStart {
 
     public static void gameStart() {
         //reset params
-        FrameRate.speed = 125;
+        Frame.speed = 125;
         score = 0;
-        frameRate.start();
+        frame.start();
         isGameOver = false;
         direction = Direction.down;
 
         root.getChildren().add(playCanvas);
-        root.getChildren().remove(GameOver.gameOver);
+        root.getChildren().remove(GameStop.gameOver);
 
         //generate snake
         for (int x = 0; x < 3; x++) {

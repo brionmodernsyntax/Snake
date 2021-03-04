@@ -17,12 +17,9 @@ public class Food {
         newFood:
         while (true) {
             //randomly generates xPosition and yPosition values for food
-            xPosition = random.nextInt(40);
-            yPosition = random.nextInt(30);
-            //pushes food down so the food doesnt overlay the score
-            if (yPosition < 3) {
-                yPosition = 3;
-            }
+            xPosition = random.nextInt(37) + 3;
+            yPosition = random.nextInt(27) + 3;
+
             //if any part of the snake overlays the food, restart the loop from
             //the label location
             for (Snake chunk : snake) {
@@ -37,7 +34,7 @@ public class Food {
     public static void eat(){
         if (Food.xPosition == snake.get(0).xPosition && Food.yPosition == snake.get(0).yPosition) {
             eatAudioPlay();
-            FrameRate.speed -= 1;
+            Frame.speed -= 1;
             snake.add(new Snake(-1, -1));
             score += 50;
             generateFood();

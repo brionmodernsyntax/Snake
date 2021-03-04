@@ -1,24 +1,33 @@
 package snake;
 
 import java.io.IOException;
+import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import static snake.Main.*;
+
+import static snake.Audio.gameAudio;
+import static snake.Audio.gameAudioPlay;
+import static snake.Controls.move;
 import static snake.Food.*;
-import static snake.Audio.*;
-import static snake.Controls.*;
-import static snake.Score.*;
+import static snake.Main.*;
+import static snake.Main.snake;
+import static snake.Score.highScore;
+import static snake.Score.score;
 
-public class Frame {
+public class Frame extends AnimationTimer {
 
+    //speed of the frame refresh
+    static int speed;
+    //initializing variable which tells the time since the last update
+    long lastUpdate = 0;
     public static void frameUpdate(GraphicsContext graphicsContext) throws IOException {
         if (!gameAudio.isPlaying()) {
             gameAudioPlay();
         }
 
         if (isGameOver) {
-            GameOver.gameStop();
+            GameStop.gameStop();
             return;
         }
 
@@ -42,10 +51,10 @@ public class Frame {
 
         //colors of the UI
         graphicsContext.setFill(Color.web("#E4FCD4"));
-        graphicsContext.fillRect(0, 0, 1000, 750);
+        graphicsContext.fillRect(0, 0, width, height);
 
         graphicsContext.setFill(Color.web("#254F43"));
-        graphicsContext.fillRect(0, 0, 1000, 75);
+        graphicsContext.fillRect(0, 0, width, 75);
 
         snake.forEach(chunk -> {
             graphicsContext.setFill(Color.web("#254F43"));
@@ -76,6 +85,21 @@ public class Frame {
         graphicsContext.setFill(Color.web("#E4FCD4"));
         graphicsContext.setFont(new Font("", 30));
         graphicsContext.fillText("Current Score", 411, 60);
+    }
+    @Override
+    public void handle(long now) {
+        //sets downtime to the current time minus the time of the last update
+        long downTime = now - lastUpdate;
+        //if downtime is greater than or equal to speed * 1,000,000, update the
+        //frame and set the time of the last update to now.
+        if (downTime >= speed * 10e5) {
+            try {
+                frameUpdate(Main.graphicsContext);
+            } catch (IOException ex) {
+            }
+            lastUpdate = now;
+        }
+
     }
 
 }
