@@ -5,17 +5,20 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static snake.Controls.controlFilter;
+import static snake.Controls.move;
+
 public class Main extends Application {
 
     public static List<Snake> snake = new ArrayList<>();
-    public static Direction direction = Direction.down;
-    public static boolean isGameOver = false;
+    public static boolean isGameOver;
     public static Frame frame = new Frame();
     public static GraphicsContext graphicsContext;
     public static Pane root;
@@ -26,6 +29,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage){
+
         Score.importScore();
         graphicsContext = playCanvas.getGraphicsContext2D();
         root = new Pane();
@@ -36,8 +40,9 @@ public class Main extends Application {
         primaryStage.setTitle("Snake");
         primaryStage.show();
         primaryStage.getIcons().add(new Image(Main.class.getResource("favicon.ico").toString()));
-
-        GameStart.gameStart();
+        frame.start();
+        scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> Controls.controlFilter(key));
+        GameStop.gameStop();
 
     }
 

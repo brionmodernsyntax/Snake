@@ -7,6 +7,7 @@ package snake;
 
 import static snake.Main.*;
 import static snake.Score.score;
+import static snake.Controls.*;
 
 public class GameStart {
 
@@ -14,7 +15,6 @@ public class GameStart {
         //reset params
         Frame.speed = 125;
         score = 0;
-        frame.start();
         isGameOver = false;
         direction = Direction.down;
 
@@ -25,7 +25,7 @@ public class GameStart {
         for (int x = 0; x < 3; x++) {
             snake.add(new Snake(20, 15));
         }
-
+        frame.start();
 
     }
 }

@@ -11,31 +11,34 @@ enum Direction {
 }
 
 public class Controls {
+    public static Direction direction = Direction.down;
+    public static Boolean directionSet = false;
+
+    public static void controlFilter(KeyEvent key){
+        if ((key.getCode() == KeyCode.W || key.getCode() == KeyCode.UP) && direction != Direction.down && !directionSet) {
+            direction = Direction.up;
+            directionSet = true;
+        }
+        if ((key.getCode() == KeyCode.A || key.getCode() == KeyCode.LEFT) && direction != Direction.right && !directionSet) {
+            direction = Direction.left;
+            directionSet = true;
+        }
+        if ((key.getCode() == KeyCode.S || key.getCode() == KeyCode.DOWN) && direction != Direction.up && !directionSet) {
+            direction = Direction.down;
+            directionSet = true;
+        }
+        if ((key.getCode() == KeyCode.D || key.getCode() == KeyCode.RIGHT) && direction != Direction.left && !directionSet) {
+            direction = Direction.right;
+            directionSet = true;
+        }
+        if (isGameOver) {
+            if (key.getCode() == KeyCode.SPACE) {
+                gameStart();
+            }
+        }
+    }
 
     public static void move() {
-        scene.addEventFilter(KeyEvent.KEY_PRESSED, key -> {
-            if ((key.getCode() == KeyCode.W || key.getCode() == KeyCode.UP) && direction != Direction.down) {
-                direction = Direction.up;
-            }
-            if ((key.getCode() == KeyCode.A || key.getCode() == KeyCode.LEFT) && direction != Direction.right) {
-                direction = Direction.left;
-            }
-            if ((key.getCode() == KeyCode.S || key.getCode() == KeyCode.DOWN) && direction != Direction.up) {
-                direction = Direction.down;
-            }
-            if ((key.getCode() == KeyCode.D || key.getCode() == KeyCode.RIGHT) && direction != Direction.left) {
-                direction = Direction.right;
-            }
-            if (key.getCode() == KeyCode.ESCAPE) {
-                frame.stop();
-            }
-            if (isGameOver) {
-                if (key.getCode() == KeyCode.SPACE) {
-                    gameStart();
-                }
-            }
-
-        });
 
         switch (direction) {
             case up:

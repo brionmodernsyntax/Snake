@@ -37,6 +37,7 @@ public class Frame extends AnimationTimer {
         }
 
         move();
+        Controls.directionSet = false;
         eat();
 
         for (int x = 1; x < snake.size(); x++) {

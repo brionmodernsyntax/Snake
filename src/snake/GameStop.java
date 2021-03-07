@@ -12,6 +12,7 @@ public class GameStop {
     public static Canvas gameOver = new Canvas(1000, 750);
 
     public static void gameStop() {
+        isGameOver = true;
         gameOverContext = gameOver.getGraphicsContext2D();
         Score.exportScore();
 
@@ -32,14 +33,14 @@ public class GameStop {
 
         gameOverContext.setFill(Color.web("#254F43"));
         gameOverContext.setFont(new Font("", 137));
-        gameOverContext.fillText("TO RESTART", 124, 485);
+        gameOverContext.fillText("TO START", 200, 485);
 
         gameOverContext.setFill(Color.web("#254F43"));
         gameOverContext.setFont(new Font("", 50));
         gameOverContext.fillText("W,A,S,D TO MOVE", 300, 735);
 
         snake.removeAll(snake);
-        Main.frame.stop();
+        frame.stop();
 
 
     }
