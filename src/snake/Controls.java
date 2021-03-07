@@ -4,11 +4,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
 import static snake.GameStart.gameStart;
-import static snake.Main.direction;
-import static snake.Main.frame;
-import static snake.Main.isGameOver;
-import static snake.Main.scene;
-import static snake.Main.snake;
+import static snake.Main.*;
 
 enum Direction {
     left, right, up, down

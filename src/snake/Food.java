@@ -1,9 +1,11 @@
 package snake;
 
 import java.util.Random;
+
 import static snake.Audio.eatAudioPlay;
-import static snake.Main.*;
+import static snake.Main.snake;
 import static snake.Score.score;
+
 public class Food {
 
     //new random number generator

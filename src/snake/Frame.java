@@ -1,6 +1,5 @@
 package snake;
 
-import java.io.IOException;
 import javafx.animation.AnimationTimer;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -11,7 +10,6 @@ import static snake.Audio.gameAudioPlay;
 import static snake.Controls.move;
 import static snake.Food.*;
 import static snake.Main.*;
-import static snake.Main.snake;
 import static snake.Score.highScore;
 import static snake.Score.score;
 
@@ -21,9 +19,10 @@ public class Frame extends AnimationTimer {
     static int speed;
     //initializing variable which tells the time since the last update
     long lastUpdate = 0;
-    public static void frameUpdate(GraphicsContext graphicsContext) throws IOException {
+    public static void frameUpdate(GraphicsContext graphicsContext) {
         if (!gameAudio.isPlaying()) {
             gameAudioPlay();
+
         }
 
         if (isGameOver) {
@@ -93,10 +92,7 @@ public class Frame extends AnimationTimer {
         //if downtime is greater than or equal to speed * 1,000,000, update the
         //frame and set the time of the last update to now.
         if (downTime >= speed * 10e5) {
-            try {
                 frameUpdate(Main.graphicsContext);
-            } catch (IOException ex) {
-            }
             lastUpdate = now;
         }
 

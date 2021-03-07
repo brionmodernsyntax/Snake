@@ -6,7 +6,7 @@
 package snake;
 
 import static snake.Main.*;
-import static snake.Score.*;
+import static snake.Score.score;
 
 public class GameStart {
 
